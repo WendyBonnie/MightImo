@@ -6,7 +6,6 @@
 */
 
 const RegisterUser = artifacts.require("registerUser");
-const imo = artifacts.require("imo");
 
 module.exports = async function (callback) {
   const deployed = await RegisterUser.deployed();
