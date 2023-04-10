@@ -41,6 +41,7 @@ function Home() {
       .addBuyerRequest(articleIndex, date, comment)
       .send({ from: eth.state.accounts[0] });
     console.log("Transaction hash:", tx);
+    alert("Votre demande de visite a bien été envoyée");
   }
 
   async function makeAnOffer() {
@@ -49,7 +50,7 @@ function Home() {
       .send({
         from: eth.state.accounts[0],
       });
-
+    alert("Votre offre à bien été envoyée");
     console.log("resultOffer", result);
   }
 
@@ -135,7 +136,7 @@ function Home() {
   return (
     <div
       style={{ textAlign: "center", marginTop: "10%", paddingBottom: "10%" }}>
-      <img src="../../../public/logo.png" />
+      <img src="https://imgur.com/fZjfUor" />
       <h1 style={{ color: "purple", marginBottom: "3%" }}>
         Bienvenue sur MightImo
       </h1>
