@@ -11,12 +11,6 @@ contract UserArticles is   RegisterUser{
     
          RegisterUser public registerUser;
       
-   
- 
-
-  
-
-   
     
 
 
