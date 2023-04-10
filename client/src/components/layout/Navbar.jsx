@@ -23,21 +23,9 @@ const NavBar = (props) => {
           </li>
         )}
         <li className="nav-item">
-          <Link to="/contact" className="nav-link">
-            Annonces
-          </Link>
-        </li>{" "}
-        <li className="nav-item">
           {isRegistered && (
             <Link to="/my-articles" className="nav-link">
               Mes annonces
-            </Link>
-          )}
-        </li>
-        <li className="nav-item">
-          {isRegistered && (
-            <Link to="/my-offers" className="nav-link">
-              Mes visites
             </Link>
           )}
         </li>
