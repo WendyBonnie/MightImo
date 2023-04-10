@@ -12,6 +12,7 @@ const Card = ({
   visit,
   request,
   actionOffer,
+  offer,
 }) => {
   const renderRequest = () => {
     if (request == null) {
@@ -65,18 +66,20 @@ const Card = ({
         }}>
         {name}
       </button>
-      <button
-        onClick={actionOffer}
-        style={{
-          backgroundColor: "#8C69D8",
-          color: "white",
-          border: "none",
-          borderRadius: "5px",
-          padding: "10px",
-          cursor: "pointer",
-        }}>
-        Faire une offre
-      </button>
+      {offer == "non" ? null : (
+        <button
+          onClick={actionOffer}
+          style={{
+            backgroundColor: "#8C69D8",
+            color: "white",
+            border: "none",
+            borderRadius: "5px",
+            padding: "10px",
+            cursor: "pointer",
+          }}>
+          Faire une offre
+        </button>
+      )}
     </div>
   );
 };

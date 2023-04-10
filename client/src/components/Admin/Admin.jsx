@@ -5,6 +5,7 @@ import useEth from "../../contexts/EthContext/useEth";
 function Admin() {
   const [users, setUsers] = useState([]);
   const [verified, setVerified] = useState(false);
+  const [index, setIndex] = useState(0);
 
   const eth = useEth();
 
@@ -20,9 +21,9 @@ function Admin() {
     setUsers(userAddresses);
   }
 
-  async function validateKYC() {
+  async function validateKYC(user) {
     const result = await eth.state.registerUser.methods
-      .validateKYC("0x5C58dB169f9F943A0756E06c1A8B52233056674f")
+      .validateKYC(user)
       .send({ from: eth.state.accounts[0] });
     console.log("user", result);
     isVerified();
@@ -46,7 +47,7 @@ function Admin() {
   }, [eth.state.accounts[0]]);
 
   useEffect(() => {
-    console.log(users);
+    console.log("USER", eth.state.accounts[0]);
   }, [users, verified]);
 
   return (
@@ -55,55 +56,67 @@ function Admin() {
 
       <div>
         {users.length >= 0 &&
-          users.map((user) => (
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                padding: "10px",
+          users.map(
+            (user) => (
+              console.log("testUser", user),
+              (
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    padding: "10px",
 
-                backgroundColor: "purple",
-                color: "white",
-                marginBottom: "5px",
-              }}>
-              <p key={user}>{user}</p>
-              <button
-                style={{
-                  backgroundColor: "white",
-                  color: "purple",
-                  border: "2px solid white",
-                  borderRadius: "4px",
-                  padding: "5px 10px",
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                }}
-                onClick={validateKYC}>
-                Valider KYC
-              </button>
-              <button
-                style={{
-                  backgroundColor: "white",
-                  color: "purple",
-                  border: "2px solid white",
-                  borderRadius: "4px",
-                  padding: "5px 10px",
-                  fontSize: "14px",
-                  fontWeight: "bold",
-                  cursor: "pointer",
-                  marginLeft: "10px",
-                }}
-                onClick={() => {
-                  isVerified(user);
-                }}>
-                verified or no
-              </button>
-              <p style={{ margin: "0", fontSize: "14px", fontWeight: "bold" }}>
-                {verified}
-              </p>
-            </div>
-          ))}
+                    backgroundColor: "purple",
+                    color: "white",
+                    marginBottom: "5px",
+                  }}>
+                  <p key={user}>{user}</p>
+                  <button
+                    style={{
+                      backgroundColor: "white",
+                      color: "purple",
+                      border: "2px solid white",
+                      borderRadius: "4px",
+                      padding: "5px 10px",
+                      fontSize: "14px",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                    }}
+                    onClick={() => {
+                      validateKYC(user);
+                    }}>
+                    Valider KYC
+                  </button>
+                  <button
+                    style={{
+                      backgroundColor: "white",
+                      color: "purple",
+                      border: "2px solid white",
+                      borderRadius: "4px",
+                      padding: "5px 10px",
+                      fontSize: "14px",
+                      fontWeight: "bold",
+                      cursor: "pointer",
+                      marginLeft: "10px",
+                    }}
+                    onClick={() => {
+                      isVerified(user);
+                    }}>
+                    verified or no
+                  </button>
+                  <p
+                    style={{
+                      margin: "0",
+                      fontSize: "14px",
+                      fontWeight: "bold",
+                    }}>
+                    {verified}
+                  </p>
+                </div>
+              )
+            )
+          )}
       </div>
     </div>
   );

@@ -17,7 +17,7 @@ function Home() {
   const [modalOffer, setModalOffer] = useState(false);
   const [comment, setComment] = useState("hello");
   const [date, setDate] = useState("23/12");
-  const [index, setIndex] = useState(false);
+  const [index, setIndex] = useState(0);
   const [price, setPrice] = useState(0);
   const eth = useEth();
   //get all the annonce
@@ -75,6 +75,7 @@ function Home() {
           .registerUser(formData.name, formData.email, 658784554, "agency")
           .send({ from: eth.state.accounts[0] });
         console.log("proposal", proposal);
+        checkIfUserRegistered();
         setSucceed(true);
       }
     } catch (error) {
@@ -132,12 +133,16 @@ function Home() {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1>Bienvenue sur MightImo</h1>
+    <div
+      style={{ textAlign: "center", marginTop: "10%", paddingBottom: "10%" }}>
+      <img src="../../../public/logo.png" />
+      <h1 style={{ color: "purple", marginBottom: "3%" }}>
+        Bienvenue sur MightImo
+      </h1>
 
       {!isRegistered && (
         <div className="form">
-          <h3>Inscription</h3>
+          <h3 style={{ marginBottom: "3%" }}>Inscription</h3>
           <label
             style={{
               color: "purple",
