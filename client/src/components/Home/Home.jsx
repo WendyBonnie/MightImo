@@ -267,7 +267,10 @@ function Home() {
       <ModalOffer
         showModal={modalOffer}
         onClose={() => setModalOffer(false)}
-        handleSubmit={() => makeAnOffer()}
+        handleSubmit={() => {
+          makeAnOffer();
+          setModalOffer(false);
+        }}
         setPrice={setPrice}
       />
     </div>
