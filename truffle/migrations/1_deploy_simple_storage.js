@@ -1,6 +1,4 @@
 const RegisterUser = artifacts.require("RegisterUser");
-const BuyerRequestAndOffer = artifacts.require("BuyerRequestAndOffer");
-const GetUserRequest = artifacts.require("GetUserRequest");
 const Articles = artifacts.require("UserArticles");
 
 module.exports = async function (deployer) {

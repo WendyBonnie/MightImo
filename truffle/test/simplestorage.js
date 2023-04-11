@@ -84,7 +84,7 @@ contract("RegisterUser", (accounts) => {
       123456789,
       "Individual"
     );
-    await registerUser.changeKYCData("KYC data");
+
     await registerUser.validateKYC(accounts[0]);
 
     // Check that the user's KYC status is Verified
@@ -214,7 +214,7 @@ contract("RegisterUser", (accounts) => {
     });
 
     // get articles by agency from the registered user's address
-    const articles = await registerUser.getArticlesByAgency(userAddress);
+    const articles = await userArticles.getArticlesByAgency(userAddress);
     assert.equal(articles.length, 1);
     assert.equal(articles[0].link, link);
     assert.equal(articles[0].title, title);
@@ -239,7 +239,7 @@ contract("RegisterUser", (accounts) => {
     );
 
     // add a buyer request
-    await BuyerRequestAndOffer.addBuyerRequest(articleIndex, date, comment, {
+    await userArticles.addBuyerRequest(articleIndex, date, comment, {
       from: accounts[0],
     });
   });
