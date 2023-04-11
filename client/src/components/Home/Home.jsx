@@ -261,6 +261,7 @@ function Home() {
         setDate={setDate}
         handleSubmit={() => {
           addBuyerRequest(index, "23/12", comment);
+          setModal(false);
         }}
       />
       <ModalOffer

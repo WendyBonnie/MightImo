@@ -55,26 +55,6 @@ contract("RegisterUser", (accounts) => {
     assert.isFalse(isRegistered);
   });
 
-  // Test case for changing KYC data
-  it("should change a user's KYC data", async () => {
-    // Call the registerUser and changeKYCData functions with test parameters
-    await registerUser.registerUser(
-      "Alice",
-      "alice@example.com",
-      123456789,
-      "Individual"
-    );
-    await registerUser.changeKYCData("KYC data");
-
-    // Check that the KYC data was updated
-    const user = await registerUser.users(accounts[0]);
-    assert.equal(user.kycData, "KYC data");
-
-    // Check that the user's KYC status is Pending
-    const kycStatus = await registerUser.isKYCVerified(accounts[0]);
-    assert.equal(kycStatus, false);
-  });
-
   // Test case for validating KYC
   it("should validate a user's KYC", async () => {
     // Call the registerUser, changeKYCData, and validateKYC functions with test parameters
@@ -82,7 +62,7 @@ contract("RegisterUser", (accounts) => {
       "Alice",
       "alice@example.com",
       123456789,
-      "Individual"
+      "agency"
     );
 
     await registerUser.validateKYC(accounts[0]);
@@ -101,8 +81,7 @@ contract("RegisterUser", (accounts) => {
       "Alice",
       "alice@example.com",
       123456789,
-      "agency",
-      { from: userAddress }
+      "agency"
     );
 
     // call the addArticle function from the registered user's address

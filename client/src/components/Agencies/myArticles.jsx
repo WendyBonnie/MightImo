@@ -122,7 +122,10 @@ function MyArticles() {
       <div>
         <Modal
           showModal={modal}
-          handleSubmit={handleAddArticle}
+          handleSubmit={() => {
+            handleAddArticle();
+            setModal(false);
+          }}
           onClose={() => {
             setModal(false);
           }}
