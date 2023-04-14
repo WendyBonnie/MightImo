@@ -16,7 +16,7 @@ function Home() {
   const [modal, setModal] = useState(false);
   const [modalOffer, setModalOffer] = useState(false);
   const [comment, setComment] = useState("hello");
-  const [date, setDate] = useState("23/12");
+  const [date, setDate] = useState("14/04");
   const [index, setIndex] = useState(0);
   const [price, setPrice] = useState(0);
   const eth = useEth();
@@ -46,7 +46,7 @@ function Home() {
 
   async function makeAnOffer() {
     const result = await eth.state.userArticles.methods
-      .makeOffer(0, "23/12", 20000)
+      .makeOffer(0, "15/04", 20000)
       .send({
         from: eth.state.accounts[0],
       });
@@ -97,6 +97,25 @@ function Home() {
     const { name, value } = event.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
+
+  useEffect(() => {
+    const init = async () => {
+      try {
+        // Get past events
+        const pastEvents = await userArticles.getPastEvents("OfferMade", {
+          fromBlock: 0,
+          toBlock: "latest",
+        });
+
+        // Set event data
+        console.log("past", pastEvents);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    init();
+  }, []);
   useEffect(() => {
     getAllArticles();
     checkIfUserRegistered();

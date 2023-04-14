@@ -45,6 +45,8 @@
 .modal {
   position: absolute;
   top: 34px;
+
+  left: 18%;
 }
 .formModal {
   background-color: purple;
